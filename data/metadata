@@ -1,0 +1,26 @@
+VIS_FLAG = YES indicates that visitor count does not reflect the total building visitor count due to location of traffic counter. Community room and program traffic are not included in totals.
+VIS = Visitors
+CIRC = Circulation incl Renewals
+HP = Holds Placed
+HF = Holds Filled
+CS = Computer Sessions
+Number = Month of Year (01-January, 02-February, 12-December, etc)
+
+All locations within city of Chicago; all numbers for 2017.
+Data last updated January-February 2018.
+
+Data from:
+https://data.cityofchicago.org/dataset/Libraries-2017-Visitors-by-Location/bk6j-nu5x
+Notes: 'The Chicago Public Library consists of the Harold Washington Library Center, Sulzer and Woodson regional libraries and over 70 neighborhood branches. Many locations experience sporadic emergency closures due to heating or air conditioning issues, or area power outages. Independence Branch closed due to a fire on 10/30/15. Sulzer Regional Library was closed for three weeks in October/November 2016 for major facility repairs. Woodson Regional Library has been closed for major construction since November 2016, and is expected to reopen in late 2017. The Thomas Hughes Children's Library Closed in November 2016 for renovations and is expected to reopen in June 2017.'
+
+https://data.cityofchicago.org/dataset/Libraries-2017-Circulation-by-Location/ifsu-hcvf
+Notes: 'Circulation figures include new checkouts as well as renewals. The Chicago Public Library consists of the Harold Washington Library Center, Sulzer and Woodson regional libraries and over 70 neighborhood branches. Many locations experience sporadic emergency closures due to heating or air conditioning issues, or area power outages. Independence Branch closed due to a fire on 10/30/15. Sulzer Regional Library was closed for three weeks in October/November 2016 for major facility repairs. Woodson Regional Library has been closed for major construction since November 2016, and is expected to reopen in late 2017. The Thomas Hughes Children's Library Closed in November 2016 for renovations and is expected to reopen in June 2017.'
+
+https://data.cityofchicago.org/dataset/Libraries-2017-Holds-Placed-by-Location/m5e9-5598
+Notes: 'Patrons may place holds on desired materials either online or by contacting any CPL location. The Chicago Public Library consists of the Harold Washington Library Center, Sulzer and Woodson regional libraries and over 70 neighborhood branches. Many locations experience sporadic emergency closures due to heating or air conditioning issues, or area power outages. Independence Branch closed due to a fire on 10/30/15. Sulzer Regional Library was closed for three weeks in October/November 2016 for major facility repairs. Woodson Regional Library has been closed for major construction since November 2016, and is expected to reopen in late 2017. The Thomas Hughes Children's Library Closed in November 2016 for renovations and is expected to reopen in June 2017.'
+
+https://data.cityofchicago.org/dataset/Libraries-2017-Holds-Filled-by-Location/nd85-5bga
+Notes: 'This data is for materials pulled to fulfill patron holds. In April 2017 Chicago Public Library migrated to a new integrated library system and the Holds Filled data is now calculated differently. The Chicago Public Library consists of the Harold Washington Library Center, Sulzer and Woodson regional libraries and over 70 neighborhood branches. Many locations experience sporadic emergency closures due to heating or air conditioning issues, or area power outages. Independence Branch closed due to a fire on 10/30/15. Sulzer Regional Library was closed for three weeks in October/November 2016 for major facility repairs. Woodson Regional Library has been closed for major construction since November 2016, and is expected to reopen in late 2017.'
+
+https://data.cityofchicago.org/dataset/Libraries-2017-Computer-Sessions-by-Location/8xex-yi9w
+Notes: 'The Chicago Public Library offers one-hour computer sessions and 15-minute computer sessions. The Chicago Public Library consists of the Harold Washington Library Center, Sulzer and Woodson regional libraries and over 70 neighborhood branches. Many locations experience sporadic emergency closures due to heating or air conditioning issues, or area power outages. Independence Branch closed due to a fire on 10/30/15. Sulzer Regional Library was closed for three weeks in October/November 2016 for major facility repairs. Woodson Regional Library has been closed for major construction since November 2016, and is expected to reopen in late 2017. The Thomas Hughes Children's Library Closed in November 2016 for renovations and is expected to reopen in June 2017.'

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>Chicago Public Library Useage by Location, 2017</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <link href='https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css?family=Corben:400|Montserrat:400,700" rel="stylesheet">
+  <link href='css/styles.css' rel='stylesheet' />
+
+</head>
+
+<body>
+  <div class='flex-parent viewport-full relative scroll-hidden'>
+
+    <div id='sidebar' class='flex-child w-full w360-ml absolute static-ml left bottom bg-dark'>
+
+      <div class='flex-parent flex-parent--column viewport-third h-full-ml hmax-full scroll-auto'>
+
+        <div id="about" class='flex-child flex-child--grow bg-accent scroll-auto-mm'>
+          <h1 class='mx18 my12 txt-h1'>Chicago Public Library Useage by Location, 2017</h1>
+          <p>This map visualizes data counts indicative of monthly library useage across the Chicago Public Library system during 2017.</p>
+          <p>
+            <span class="vis-txt px6 py3 bg-lighten25 round txt-bold">Visitor counts</span>,
+            <span class="circ-txt px6 py3 bg-lighten25 round txt-bold">circulation figures</span>, number of
+            <span class="hp-txt px6 py3 bg-lighten25 round txt-bold">holds placed in person</span>, total number of
+            <span class="hf-txt px6 py3 bg-lighten25 round txt-bold">holds filled</span>, and individual
+            <span class="cs-txt px6 py3 bg-lighten25 round txt-bold">computer sessions</span> are offered as indicators of library branch patronage for the downtown Harold Washington Library Center, two regional libraries, and over 70 neighborhood branches.</p>
+          <!-- <div id="caveats">
+            <h2 class='txt-bold mr36 txt-uppercase align-r'>Some notes and caveats</h2>
+            <ul class="txt-ul txt-s pl60 pr12 pl36-mm mb24">
+              <li class="txt-li">The visitor counts for certain locations, indicated with a <**?>, do not include 100% of building visitors due to the particular location of these branches' traffic counters.</li>
+              <li class="txt-li">Locations open more or less than the typical 48 hours a week are indicated with a <'*'?>.</li>
+              <li class="txt-li">The numbers from a few branches reflect more extensive closures, which are specified as applicable within the location tooltip.</li>
+              <li class="txt-li">There was a shift in data tabulation methods for 'Holds Filled' during April 2017, and most branches show a drastic dip in the figures for this month.</li>
+            </ul>
+          </div> -->
+        </div>
+
+        <footer class='flex-child txt-m'>
+          <div class="flex-parent flex-parent--column flex-parent--center-main">
+            <div class="flex-child">
+              <p class="align-l pr120 pr36-ml">Data accessed May 2018 on
+              <a target='_blank' class='link' href='https://data.cityofchicago.org/browse?q=libraries%202017%20by%20location&sortBy=last_modified&anonymous=true&utf8=%E2%9C%93#'>Chicago's Open Data Portal</a>.
+              </p>
+            </div>
+            <div id="compass-icon" class="flex-child pt3-mm">
+              <img src='svg/compass-rose.svg' />
+            </div>
+            <div class="flex-child">
+              <p class="align-r pl120 pl24-ml">Map authored by
+                <a target='_blank' class='link' href='https://kafunk.github.io'>Katrina Funk</a> in partial fulfilment of MAP 673 // <a target="_blank" class='link' href="https://newmapsplus.uky.edu">New Maps Plus</a>.
+              </p>
+            </div>
+           </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class='flex-child flex-child--grow viewport-twothirds viewport-full-ml'>
+
+      <!-- map -->
+      <div id="map" class='viewport-twothirds viewport-full-ml'>
+      </div>
+
+      <!-- ui slider -->
+      <div id='slider' class='range range--s w240 w300-mm mx0 my0 mx12-mm my12-mm px12 py18 round-bl-bold round-bold-mm'>
+        <input type='range' min="1", max="12", value="1", step="1" />
+      </div>
+
+      <!-- slider text -->
+      <div id="slider-txt" class="wmin120 wmin0-mm mx0 my0 mx12-mm px12 py6 round-bl-bold round-bold-mm">
+        <p class="txt-m align-center align-r-mm txt-spacing2">
+          <span class="txt-bold month">January</span> 2017</p>
+      </div>
+
+      <!-- legend -->
+      <div id='legend' class='wmax240 wmax-none-mm w300-mm mx0 my0 px6 py6 mx12-mm mt12-mm round-bold-mm relative'>
+        <h4 class='round-tl-mm round-tr-mm align-center bg-accent txt-h4 px12 px18-mm py18 wmin240'>Monthly counts</h4>
+        <div class="legend-circles-parent pt18 pb12">
+          <div class='ml6-mm mt12 mb0 legend-circles relative'>
+            <div class="legend-largest absolute"></div>
+            <div class="legend-circ5 absolute"></div>
+            <div class="legend-circ4 absolute"></div>
+            <div class="legend-circ3 absolute"></div>
+            <div class="legend-circ2 absolute"></div>
+            <div class="legend-smallest absolute"></div>
+            <div class="legend-largest-label txt-m absolute"></div>
+            <div class="legend-circ5-label txt-m absolute"></div>
+            <div class="legend-circ4-label txt-m absolute"></div>
+            <div class="legend-circ3-label txt-m absolute"></div>
+            <div class="legend-circ2-label txt-m absolute"></div>
+            <div class="legend-smallest-label txt-m absolute"></div> <!-- legend-small-label accessed dynamically through js; keep! -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ui info panel -->
+      <div id='info' class='round-bold pt6 pb12 pl3 pr3 absolute w260'>
+        <div>
+          <h3 class="mx12 mt6 txt-l txt-uppercase txt-bold">
+            <span></span> Branch
+          </h3>
+          <h4 class="mx12 mb30 txt-uppercase txt-sub txt-bold align-r">
+            <span class="month"></span>
+          </h4>
+          <ul class='mx0 txt-ul'>
+            <li class="vis vis-txt txt-li">
+              <span>Visitors</span>:
+              <span></span>
+            </li>
+            <li class="circ circ-txt txt-li">
+              <span>Circulation</span> count:
+              <span></span>
+            </li>
+            <li class="hp hp-txt txt-li">
+              <span>Holds Placed</span>:
+              <span></span>
+            </li>
+            <li class="hf hf-txt txt-li">
+              <span>Holds Filled</span>:
+              <span></span>
+            </li>
+            <li class="cs cs-txt txt-li">
+              <span>Computer Sessions</span>:
+              <span></span>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Line divider -->
+        <hr class="txt-hr" />
+
+        <!-- Sparkline chart -->
+        <div>
+          <h4 class="txt-em align-center mx12">Branch trends January &ndash; December</h4>
+          <ul class="ml-neg12 align-center py6 txt-ul">
+            <li class="visspark pb6"></li>
+            <li class="circspark pb6"></li>
+            <li class="hpspark pb6"></li>
+            <li class="hfspark pb6"></li>
+            <li class="csspark"></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- load Assembly, jQuery, and Omnivore JS here -->
+  <script async defer src='https://api.mapbox.com/mapbox-assembly/v0.21.2/assembly.js'></script>
+  <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+  <!-- Custom script -->
+  <script src='js/app.js'></script>
+
+</body>
+
+</html>
