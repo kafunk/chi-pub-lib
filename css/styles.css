@@ -88,10 +88,13 @@ footer p {
   color:#6B7063;
 }
 
-/* display none for layout purposes but be careful of license restrictions */
-.mapbox-logo, .leaflet-control-attribution {
-  display: none;
+.nowrap {
+  white-space: nowrap;
 }
+/* display none for layout purposes but be careful of license restrictions */
+/* .mapbox-logo, .leaflet-control-attribution {
+  display: none;
+} */
 /* custom styles for legend symbols */
 .legend-largest, .legend-circ5, .legend-circ4, .legend-circ3, .legend-circ2, .legend-smallest {
   border-radius: 50%;
